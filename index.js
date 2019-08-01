@@ -11,24 +11,24 @@ const promise = new Promise((resolve, reject) => {
 
 
 // PROMISES WITH XMLHTTPREQUEST
-// const promise = new Promise((resolve, reject) => {
-//     const request = new XMLHttpRequest();
+const promise = new Promise((resolve, reject) => {
+    const request = new XMLHttpRequest();
 
-//     request.open('GET', 'https://jsonplaceholder.typicode.com/posts/1');
-//     request.onload = () => {
-//         if(request.status === 200) {
-//             resolve(request.response);
-//         } else {
-//             reject(Error(request.statusText));
-//         }
-//     };
+    request.open('GET', 'https://jsonplaceholder.typicode.com/posts/1');
+    request.onload = () => {
+        if(request.status === 200) {
+            resolve(request.response);
+        } else {
+            reject(Error(request.statusText));
+        }
+    };
 
-//     request.onerror = () => {
-//         reject(Error('Error fetching data'));
-//     }
+    request.onerror = () => {
+        reject(Error('Error fetching data'));
+    }
 
-//     request.send();
-// });
+    request.send();
+});
 
 // console.log('request made');
 
@@ -142,3 +142,9 @@ const promise = new Promise((resolve, reject) => {
 //         request.send();
 //     })
 // }
+
+
+
+
+
+
