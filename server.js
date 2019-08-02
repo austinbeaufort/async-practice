@@ -84,9 +84,12 @@ const root = {
         return readFile('./test.txt', 'utf-8');
     },
 
+    settleData: async() => {
+        return await root.findStats();
+    },
+
     getStats: () => {
-        return root.findStats()
-                    .then(results => results);
+        return root.settleData();
     },
 }
 
