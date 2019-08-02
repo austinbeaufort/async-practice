@@ -26,7 +26,8 @@ const schema = buildSchema(`
     }
 
     type Query {
-        getStats: Stats
+        getStats: String
+        writeName: String
     }
 `)
 
@@ -37,9 +38,13 @@ const util = require('util');
 const fs = require('fs');
 
 // CALLBACK
-// fs.stat('./twoPractice.js', (error, stats) => {
-//     console.log(stats);
-// })
+// function findStats() {
+//     fs.stat('./twoPractice.js', (error, stats) => {
+//         console.log(stats);
+//         return stats;
+//     })
+// }
+
 
 // PROMISE
 // const stat = util.promisify(fs.stat);
@@ -49,22 +54,41 @@ const fs = require('fs');
 
 
 // ASYNC AWAIT
-const stat = util.promisify(fs.stat);
+// async function fetchStats() {
+//     const stat = util.promisify(fs.stat);
+//     stat('./twoPractice.js')
+//         .then(stats => {
+//             console.log(stats);
+//             return stats;
+//         });
+// }
 
-async function fetchStats() {
-    stat('./twoPractice.js')
-        .then(stats => stats);
-}
 
 
 
 const root = {
-    getStats: (fetchStats) => {
-        return fetchStats()
-                .then(stats => stats);
-    }
-}
 
+    // FIRST WAY
+    // findStats: async() => {
+    //     const readFile = util.promisify(fs.readFile);
+    //     return readFile('./test.txt', 'utf-8');
+    // },
+
+    // getStats: () => {
+    //     return root.findStats()
+    //                 .then(results => results);
+    // },
+
+    findStats: async() => {
+        const readFile = util.promisify(fs.readFile);
+        return readFile('./test.txt', 'utf-8');
+    },
+
+    getStats: () => {
+        return root.findStats()
+                    .then(results => results);
+    },
+}
 
 
 const app = express();
