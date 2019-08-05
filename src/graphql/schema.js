@@ -23,9 +23,18 @@ const schema = buildSchema(`
         birthtime: String
     }
 
+    type Photos {
+        albumId: Int
+        id: Int
+        title: String
+        url: String
+        thumbnailUrl: String
+    }
+
     type Query {
-        getStats: String
-        writeName: String
+        getFile: String
+        getPhotos: [Photos]
+        
     }
 `)
 
