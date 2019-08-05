@@ -4,12 +4,7 @@ const assert = chai.assert;
 const expect = chai.expect;
 
 
-const { findFile, 
-        settleData, 
-        getFile,
-        fetchPhotos,
-        getPhotos
-      } = require('../src/data/dataController');
+const { findFile, getFile } = require('../src/data/dataController');
 
 
 
