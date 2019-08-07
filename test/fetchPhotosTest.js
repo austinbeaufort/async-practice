@@ -1,6 +1,7 @@
 const chai = require('chai');
-const assert = chai.assert;
 const expect = chai.expect;
+
+const { average } = require('../avg/average');
 
 const { fetchPhotos } = require('../src/data/dataController');
 
@@ -24,16 +25,15 @@ describe('fetchPhotos', function() {
         // GET TIMES AND PUSH TO ARRAY
         for (let i = 0; i < 5; i++) {
             let startTime = Date.now();
-            let photoData = await fetchPhotos();
+            // SET TIMEOUT
+            // let photoData = await fetchPhotos();
             let endTime = Date.now();
             let totalTime = endTime - startTime;
             timesArray.push(totalTime);
         }
 
         // AVERAGE THE TIMES
-        let numberOfItemsInList = timesArray.length;
-        let total = timesArray.reduce((a, b) => a + b);
-        let averageRunTime = total / numberOfItemsInList;
+        let averageRunTime = average(timesArray);
         expect(averageRunTime).to.be.lessThan(320);
     })
 });
